@@ -1,5 +1,6 @@
-import bcrypt from "bcryptjs";
-import User from "../models/User";
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
+import User from "../models/User.js";
 
 // Register user
 export const register = async (req, res) => {
@@ -9,6 +10,13 @@ export const register = async (req, res) => {
         return res
             .status(400)
             .json({ success: false, message: "All fields are required" });
+    }
+
+    if (password.length < 6) {
+        return res.status(400).json({
+            success: false,
+            message: "Password must be at least 6 characters",
+        });
     }
 
     try {
@@ -25,6 +33,17 @@ export const register = async (req, res) => {
             name,
             email,
             password: hashedPassword,
+        });
+
+        const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
+            expiresIn: "1d",
+        });
+
+        res.cookie("token", token, {
+            httpOnly: true,
+            sameSite: "strict",
+            secure: process.env.NODE_ENV === "production",
+            maxAge: 24 * 60 * 60 * 1000,
         });
 
         res.status(201).json({
@@ -65,6 +84,17 @@ export const login = async (req, res) => {
                 .status(400)
                 .json({ success: false, message: "Invalid email or password" });
         }
+
+        const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
+            expiresIn: "1d",
+        });
+
+        res.cookie("token", token, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === "production",
+            sameSite: "strict",
+            maxAge: 24 * 60 * 60 * 1000,
+        });
 
         res.status(200).json({
             success: true,
