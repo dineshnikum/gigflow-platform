@@ -1,12 +1,20 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAuth } from "../context/authContext";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
     const [formData, setFormData] = useState({
         email: "",
         password: "",
     });
-    const { login } = useAuth();
+    const { login, isAuthenticated } = useAuth();
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (isAuthenticated) {
+            navigate("/gigs");
+        }
+    }, [isAuthenticated]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
