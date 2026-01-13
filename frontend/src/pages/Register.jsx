@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "../context/authContext";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function Register() {
     const [formData, setFormData] = useState({
@@ -80,6 +81,13 @@ export default function Register() {
                         Register
                     </button>
                 </form>
+
+                <p className="text-center">
+                    Already have an account?{" "}
+                    <Link to="/login" className="text-blue-600">
+                        Login
+                    </Link>
+                </p>
             </div>
         </div>
     );

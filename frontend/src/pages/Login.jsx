@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "../context/authContext";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function Login() {
     const [formData, setFormData] = useState({
@@ -66,6 +67,13 @@ export default function Login() {
                         Login
                     </button>
                 </form>
+
+                <p className="text-center">
+                    Don't have an account?{" "}
+                    <Link to="/register" className="text-blue-600">
+                        Register
+                    </Link>
+                </p>
             </div>
         </div>
     );
