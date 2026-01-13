@@ -7,14 +7,14 @@ export default function Login() {
         email: "",
         password: "",
     });
-    const { login, isAuthenticated } = useAuth();
+    const { login, user } = useAuth();
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (isAuthenticated) {
-            navigate("/gigs");
+        if (user) {
+            navigate("/");
         }
-    }, [isAuthenticated]);
+    }, [user]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -29,8 +29,8 @@ export default function Login() {
     };
 
     return (
-        <div className="flex justify-center items-center h-screen bg-gray-200">
-            <div className="flex flex-col gap-4 min-w-[400px] w-1/2 max-w-[600px] border border-gray-300 px-6 py-10 rounded bg-white">
+        <div className="flex justify-center items-center h-screen bg-gray-100">
+            <div className="flex flex-col gap-4 w-full max-w-md border border-gray-300 px-6 py-10 rounded-xl bg-white">
                 <form onSubmit={handleSubmit} className="flex flex-col gap-4">
                     <h1 className="text-4xl font-bold text-center">Login</h1>
                     <div className="flex flex-col gap-2">

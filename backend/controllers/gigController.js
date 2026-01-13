@@ -9,8 +9,8 @@ export const getGigs = async (req, res) => {
 
         const filter = {
             status: "open",
-            ...(search && { title: { $text: { $search: search } } })
-        }
+            ...(search && { title: { $regex: search, $options: "i" } }),
+        };
 
         const gigs = await Gig.find(filter).sort({ createdAt: -1 });
         return res.status(200).json({ success: true, gigs });

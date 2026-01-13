@@ -21,6 +21,4 @@ const gigSchema = new mongoose.Schema(
     }
 );
 
-gigSchema.index({ title: "text" });
-
 export default mongoose.model("Gig", gigSchema);

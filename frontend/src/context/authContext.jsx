@@ -6,13 +6,13 @@ import { useContext, useState } from "react";
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [user, setUser] = useState(null);
 
     const login = async (formData) => {
         try {
             const response = await api.post("/api/auth/login", formData);
             if (response.data.success) {
-                setIsAuthenticated(true);
+                setUser(response.data.user);
                 toast.success(response.data.message);
             }
         } catch (error) {
@@ -24,7 +24,7 @@ const AuthProvider = ({ children }) => {
         try {
             const response = await api.post("/api/auth/register", formData);
             if (response.data.success) {
-                setIsAuthenticated(true);
+                setUser(response.data.user);
                 toast.success(response.data.message);
             }
         } catch (error) {
@@ -35,7 +35,7 @@ const AuthProvider = ({ children }) => {
     };
 
     return (
-        <AuthContext.Provider value={{ isAuthenticated, login, register }}>
+        <AuthContext.Provider value={{ login, register, user }}>
             {children}
         </AuthContext.Provider>
     );
