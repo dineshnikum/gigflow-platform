@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import { createContext, useEffect } from "react";
 import api from "../api/axios.js";
 import { toast } from "react-toastify";
 import { useContext, useState } from "react";
@@ -33,6 +33,24 @@ const AuthProvider = ({ children }) => {
             );
         }
     };
+
+    useEffect(() => {
+        const checkAuth = async () => {
+            try {
+                const response = await api.get("/api/auth/check-auth", {
+                    withCredentials: true,
+                });
+                if (response.data.success) {
+                    setUser(response.data.user);
+                }
+            } catch (error) {
+                console.log(error);
+                setUser(null);
+            }
+        };
+
+        checkAuth();
+    }, []);
 
     return (
         <AuthContext.Provider value={{ login, register, user }}>
