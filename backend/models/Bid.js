@@ -13,6 +13,7 @@ const bidSchema = new mongoose.Schema(
             required: true,
         },
         message: { type: String, required: true },
+        price: { type: Number, required: true },
         status: {
             type: String,
             enum: ["pending", "hired", "rejected"],

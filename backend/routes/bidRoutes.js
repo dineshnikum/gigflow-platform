@@ -4,10 +4,11 @@ import {
     getBidsForGig,
     hireBid,
 } from "../controllers/bidController.js";
+import protect from "../middleware/authMiddleware.js";
 
 const router = express.Router();
 
-router.post("/", createBid);
+router.post("/", protect, createBid);
 router.get("/:gigId", getBidsForGig);
 router.patch("/:bidId/hire", hireBid);
 

@@ -1,6 +1,8 @@
 import Gig from "../models/Gig.js";
 
-// get gigs
+// @desc    Get gigs
+// @route   GET /api/gigs
+// @access  Public
 export const getGigs = async (req, res) => {
     try {
         const { search } = req.query;
@@ -21,7 +23,9 @@ export const getGigs = async (req, res) => {
     }
 };
 
-// create gig
+// @desc    Create gig
+// @route   POST /api/gigs
+// @access  Private
 export const createGig = async (req, res) => {
     const { title, description, budget } = req.body;
     const ownerId = req.user.userId;
