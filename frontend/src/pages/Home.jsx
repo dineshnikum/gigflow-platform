@@ -10,16 +10,13 @@ export default function Home() {
                 <h1 className="text-3xl font-bold mb-4">
                     Welcome {user && user.name} 👋
                 </h1>
-                <p className="text-gray-600 mb-6">
-                    Find gigs, hire talent, or post your own work.
-                </p>
 
-                <div className="flex flex-col gap-4">
+                <div className="flex flex-col gap-4 mt-10">
                     <Link
-                        to="/gigs"
+                        to="/browse-open-gigs"
                         className="bg-blue-600 text-white py-2 rounded hover:bg-blue-700"
                     >
-                        Browse Gigs
+                        Browse Open Gigs
                     </Link>
 
                     <Link
@@ -32,7 +29,7 @@ export default function Home() {
                     </Link>
 
                     {!user && (
-                        <div className="flex justify-center gap-4 mt-4">
+                        <div className="flex justify-center gap-4 mt-2">
                             <Link
                                 to="/login"
                                 className="text-blue-600 hover:underline"

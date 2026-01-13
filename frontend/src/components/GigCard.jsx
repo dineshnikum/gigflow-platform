@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const GigCard = ({ gig }) => {
     return (
         <div className="border rounded-lg p-4 hover:shadow-sm transition">
@@ -5,9 +7,12 @@ const GigCard = ({ gig }) => {
             <p className="text-gray-600 text-sm mt-1">{gig.description}</p>
             <div className="flex items-center justify-between mt-4">
                 <span className="font-semibold">₹ {gig.budget}</span>
-                <button className="text-sm text-blue-600 cursor-pointer bg-blue-600 text-white px-4 py-2 rounded">
-                    Apply
-                </button>
+                <Link
+                    to={`/gig/${gig._id}`}
+                    className="text-sm text-blue-600 cursor-pointer bg-blue-600 text-white px-4 py-2 rounded"
+                >
+                    Details
+                </Link>
             </div>
         </div>
     );

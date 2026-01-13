@@ -2,7 +2,7 @@ import GigCard from "../components/GigCard";
 import api from "../api/axios";
 import { useEffect, useState } from "react";
 
-const Gigs = () => {
+export default function BrowseOpenGigs() {
     const [gigs, setGigs] = useState([]);
     const [loading, setLoading] = useState(true);
     const [search, setSearch] = useState("");
@@ -27,7 +27,7 @@ const Gigs = () => {
     }, [search]);
 
     return (
-        <div className="max-w-6xl mx-auto px-4 py-6">
+        <div className="max-w-2xl mx-auto px-4 py-6">
             <h1 className="text-2xl font-semibold mb-6">Available Gigs</h1>
 
             <form
@@ -61,6 +61,4 @@ const Gigs = () => {
             </div>
         </div>
     );
-};
-
-export default Gigs;
+}

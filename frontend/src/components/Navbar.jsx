@@ -12,8 +12,11 @@ export default function Navbar() {
                             </Link>
                         </li>
                         <li>
-                            <Link to="/gigs" className="hover:underline">
-                                Gigs
+                            <Link
+                                to="/browse-open-gigs"
+                                className="hover:underline"
+                            >
+                                Browse Open Gigs
                             </Link>
                         </li>
                         <li>

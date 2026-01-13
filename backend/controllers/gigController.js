@@ -53,3 +53,28 @@ export const createGig = async (req, res) => {
         });
     }
 };
+
+// @desc    Get gig by ID
+// @route   GET /api/gigs/:gigId
+// @access  Public
+export const getGigById = async (req, res) => {
+    const { gigId } = req.params;
+
+    try {
+        const gig = await Gig.findById(gigId);
+        if (!gig) {
+            return res.status(404).json({
+                success: false,
+                message: "Gig not found",
+            });
+        }
+
+        return res.status(200).json({ success: true, gig });
+    } catch (error) {
+        console.error("Error fetching gig:", error);
+        return res.status(500).json({
+            success: false,
+            message: "Failed to fetch gig",
+        });
+    }
+};
