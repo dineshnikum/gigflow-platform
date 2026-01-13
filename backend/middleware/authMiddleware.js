@@ -4,7 +4,7 @@ const protect = (req, res, next) => {
     const token = req.cookies.token;
 
     if (!token) {
-        res.status(401).json({ success: false, message: "Not authorized" });
+        return res.status(401).json({ success: false, message: "Not authorized" });
     }
 
     try {

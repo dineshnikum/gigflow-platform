@@ -3,7 +3,14 @@ import Gig from "../models/Gig.js";
 // get gigs
 export const getGigs = async (req, res) => {
     try {
-        const gigs = await Gig.find({ status: "open" }).sort({ createdAt: -1 });
+        const { search } = req.query;
+
+        const filter = {
+            status: "open",
+            ...(search && { title: { $text: { $search: search } } })
+        }
+
+        const gigs = await Gig.find(filter).sort({ createdAt: -1 });
         return res.status(200).json({ success: true, gigs });
     } catch (error) {
         console.error("Error fetching gigs:", error);
@@ -32,7 +39,6 @@ export const createGig = async (req, res) => {
             description,
             budget,
             ownerId,
-            status: "open",
         });
         return res.status(201).json({ success: true, gig });
     } catch (error) {

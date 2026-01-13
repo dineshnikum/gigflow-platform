@@ -46,7 +46,7 @@ export const register = async (req, res) => {
             maxAge: 24 * 60 * 60 * 1000,
         });
 
-        res.status(201).json({
+        return res.status(201).json({
             success: true,
             message: "User created successfully",
             user: {
@@ -56,7 +56,7 @@ export const register = async (req, res) => {
             },
         });
     } catch (error) {
-        res.status(500).json({ success: false, message: "Server error" });
+        return res.status(500).json({ success: false, message: "Server error" });
     }
 };
 
@@ -96,7 +96,7 @@ export const login = async (req, res) => {
             maxAge: 24 * 60 * 60 * 1000,
         });
 
-        res.status(200).json({
+        return res.status(200).json({
             success: true,
             message: "User logged in",
             user: {
@@ -106,6 +106,6 @@ export const login = async (req, res) => {
             },
         });
     } catch (error) {
-        res.status(500).json({ success: false, message: "Server error" });
+        return res.status(500).json({ success: false, message: "Server error" });
     }
 };
