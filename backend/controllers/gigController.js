@@ -1,5 +1,45 @@
-export const getGigs = (req, res) => {};
+import Gig from "../models/Gig.js";
 
-export const createGig = (req, res) => {
-    return res.status(200).json({ success: true, message: "Gig created" });
+// get gigs
+export const getGigs = async (req, res) => {
+    try {
+        const gigs = await Gig.find({ status: "open" }).sort({ createdAt: -1 });
+        return res.status(200).json({ success: true, gigs });
+    } catch (error) {
+        console.error("Error fetching gigs:", error);
+        return res.status(500).json({
+            success: false,
+            message: "failed to fetch gigs",
+        });
+    }
+};
+
+// create gig
+export const createGig = async (req, res) => {
+    const { title, description, budget } = req.body;
+    const ownerId = req.user.userId;
+
+    if (!title || !description || !budget) {
+        return res.status(400).json({
+            success: false,
+            message: "All fields are required",
+        });
+    }
+
+    try {
+        const gig = await Gig.create({
+            title,
+            description,
+            budget,
+            ownerId,
+            status: "open",
+        });
+        return res.status(201).json({ success: true, gig });
+    } catch (error) {
+        console.error("Error creating gig:", error);
+        return res.status(500).json({
+            success: false,
+            message: "failed to create gig",
+        });
+    }
 };
