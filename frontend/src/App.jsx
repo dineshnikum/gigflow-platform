@@ -17,7 +17,7 @@ export default function App() {
 
     useEffect(() => {
         if (user) {
-            const socket = io("http://localhost:5000");
+            const socket = io(import.meta.env.VITE_BACKEND_URL);
 
             socket.emit("setup", user._id);
 
