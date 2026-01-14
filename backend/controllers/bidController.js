@@ -101,6 +101,15 @@ export const hireBid = async (req, res) => {
             { status: "rejected" }
         );
 
+        const io = req.app.get("io");
+        if (io) {
+            io.to(bid.freeLancerId.toString()).emit("notification", {
+                type: "hired",
+                message: `You have been hired for ${gig.title}!`,
+                gigId: gig._id,
+            });
+        }
+
         return res.status(200).json({ success: true, bid });
     } catch (error) {
         console.error(error);

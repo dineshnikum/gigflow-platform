@@ -1,5 +1,6 @@
 import api from "../api/axios";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 export default function CreateGig() {
     const [formData, setFormData] = useState({
@@ -13,11 +14,13 @@ export default function CreateGig() {
         try {
             const response = await api.post("/api/gigs", formData);
             if (response.data.success) {
-                console.log("Gig created successfully");
+                toast.success("Gig created successfully");
                 e.target.reset();
             }
         } catch (error) {
-            console.log(error);
+            toast.error(
+                error?.response?.data?.message || "Gig creation failed"
+            );
         } finally {
             setFormData({
                 title: "",

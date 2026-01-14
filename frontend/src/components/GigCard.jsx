@@ -17,14 +17,24 @@ const GigCard = ({ gig }) => {
                 <span className="font-semibold">₹ {gig.budget}</span>
                 <button
                     onClick={() => setShowDetails(!showDetails)}
-                    className="text-sm text-blue-600 cursor-pointer bg-gray-600 text-white px-4 py-2 rounded"
+                    className={`text-sm text-blue-600 cursor-pointer bg-gray-600 text-white px-4 py-2 rounded`}
                 >
-                    {showDetails ? "Close" : "Details"}
+                    {!user
+                        ? "Login to apply"
+                        : showDetails
+                        ? "Close"
+                        : "Details"}
                 </button>
             </div>
 
             {showDetails &&
-                (isGigOwner ? <BidList gig={gig} /> : <BidForm gig={gig} />)}
+                (!user ? (
+                    ""
+                ) : isGigOwner ? (
+                    <BidList gig={gig} />
+                ) : (
+                    <BidForm gig={gig} />
+                ))}
         </div>
     );
 };

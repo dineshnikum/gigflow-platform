@@ -20,7 +20,7 @@ export default function Register() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        register(formData);
+        await register(formData);
     };
 
     const handleChange = (e) => {

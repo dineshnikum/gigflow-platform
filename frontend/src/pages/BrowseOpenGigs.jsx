@@ -30,7 +30,7 @@ export default function BrowseOpenGigs() {
 
     return (
         <div className="max-w-2xl mx-auto px-4 py-6 bg-white">
-            <h1 className="text-2xl font-semibold mb-6">Available Gigs</h1>
+            <h1 className="text-2xl font-semibold mb-6">Available Jobs</h1>
 
             <form
                 className="mb-6 flex gap-2"
@@ -39,7 +39,7 @@ export default function BrowseOpenGigs() {
                 <input
                     type="text"
                     className="border rounded px-4 py-2 w-full"
-                    placeholder="Search gigs..."
+                    placeholder="Search jobs..."
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
                 />
@@ -54,11 +54,11 @@ export default function BrowseOpenGigs() {
 
             <div className="grid gap-6">
                 {loading ? (
-                    <p>Loading gigs...</p>
+                    <p>Loading jobs...</p>
                 ) : gigs.length > 0 ? (
                     gigs.map((gig) => <GigCard key={gig._id} gig={gig} />)
                 ) : (
-                    <p>No gigs available</p>
+                    <p>No jobs available</p>
                 )}
             </div>
         </div>

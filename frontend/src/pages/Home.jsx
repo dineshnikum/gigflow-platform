@@ -16,7 +16,7 @@ export default function Home() {
                         to="/browse-open-gigs"
                         className="bg-blue-600 text-white py-2 rounded hover:bg-blue-700"
                     >
-                        Browse Open Gigs
+                        Browse Open Jobs
                     </Link>
 
                     <Link
@@ -25,7 +25,7 @@ export default function Home() {
                             !user ? "opacity-50 cursor-not-allowed" : ""
                         }`}
                     >
-                        Create a Gig
+                        Post a Job
                     </Link>
 
                     {!user && (

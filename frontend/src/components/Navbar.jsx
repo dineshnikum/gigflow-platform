@@ -16,12 +16,12 @@ export default function Navbar() {
                                 to="/browse-open-gigs"
                                 className="hover:underline"
                             >
-                                Browse Open Gigs
+                                Browse Jobs
                             </Link>
                         </li>
                         <li>
                             <Link to="/create-gig" className="hover:underline">
-                                Create Gig
+                                Post a Job
                             </Link>
                         </li>
                     </ul>

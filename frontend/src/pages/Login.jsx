@@ -19,7 +19,7 @@ export default function Login() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        login(formData);
+        await login(formData);
     };
 
     const handleChange = (e) => {

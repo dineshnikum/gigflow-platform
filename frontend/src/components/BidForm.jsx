@@ -1,4 +1,3 @@
-import { useAuth } from "../context/authContext";
 import { useState } from "react";
 import api from "../api/axios";
 
@@ -45,7 +44,7 @@ export default function BidForm({ gig }) {
                 type="submit"
                 className="bg-blue-500 text-white p-2 rounded cursor-pointer px-2"
             >
-                Submit
+                Apply
             </button>
         </form>
     );
