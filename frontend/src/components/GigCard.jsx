@@ -33,7 +33,7 @@ const GigCard = ({ gig }) => {
                 ) : isGigOwner ? (
                     <BidList gig={gig} />
                 ) : (
-                    <BidForm gig={gig} />
+                    <BidForm gig={gig} setShowDetails={setShowDetails} />
                 ))}
         </div>
     );

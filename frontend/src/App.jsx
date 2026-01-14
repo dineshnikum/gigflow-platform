@@ -1,4 +1,7 @@
 import { Routes, Route, Navigate } from "react-router-dom";
+import { useEffect } from "react";
+import { io } from "socket.io-client";
+import { toast } from "react-toastify";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import BrowseOpenGigs from "./pages/BrowseOpenGigs";
@@ -11,6 +14,24 @@ import { useAuth } from "./context/authContext";
 
 export default function App() {
     const { user } = useAuth();
+
+    useEffect(() => {
+        if (user) {
+            const socket = io("http://localhost:5000");
+
+            socket.emit("setup", user._id);
+
+            socket.on("notification", (notification) => {
+                if (notification.type === "hired") {
+                    toast.success(notification.message);
+                }
+            });
+
+            return () => {
+                socket.disconnect();
+            };
+        }
+    }, [user]);
 
     const ProtectedRoute = ({ children }) => {
         if (!user) {

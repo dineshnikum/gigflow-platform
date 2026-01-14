@@ -1,7 +1,7 @@
 import { useState } from "react";
 import api from "../api/axios";
 
-export default function BidForm({ gig }) {
+export default function BidForm({ gig, setShowDetails }) {
     const [message, setMessage] = useState("");
     const [price, setPrice] = useState("");
 
@@ -15,6 +15,7 @@ export default function BidForm({ gig }) {
             });
             if (response.data.success) {
                 console.log("Bid created successfully");
+                setShowDetails(false);
             }
         } catch (error) {
             console.log(error);
@@ -42,7 +43,7 @@ export default function BidForm({ gig }) {
             />
             <button
                 type="submit"
-                className="bg-blue-500 text-white p-2 rounded cursor-pointer px-2"
+                className="bg-blue-500 text-white px-4 py-2 rounded cursor-pointer"
             >
                 Apply
             </button>
