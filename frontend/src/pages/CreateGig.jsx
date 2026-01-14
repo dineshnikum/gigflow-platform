@@ -40,7 +40,6 @@ export default function CreateGig() {
                 <h1 className="text-2xl font-bold mb-6">Create a Gig</h1>
 
                 <form onSubmit={handleSubmit} className="space-y-4">
-                    {/* Title */}
                     <div>
                         <label className="block text-sm font-medium mb-1">
                             Gig Title
@@ -56,7 +55,6 @@ export default function CreateGig() {
                         />
                     </div>
 
-                    {/* Description */}
                     <div>
                         <label className="block text-sm font-medium mb-1">
                             Description
@@ -72,7 +70,6 @@ export default function CreateGig() {
                         />
                     </div>
 
-                    {/* Budget */}
                     <div>
                         <label className="block text-sm font-medium mb-1">
                             Budget
@@ -88,7 +85,6 @@ export default function CreateGig() {
                         />
                     </div>
 
-                    {/* Submit */}
                     <button
                         type="submit"
                         className="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700"
