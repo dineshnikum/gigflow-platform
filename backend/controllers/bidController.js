@@ -17,7 +17,9 @@ export const createBid = async (req, res) => {
 
     try {
         const bid = await Bid.create({ gigId, message, price, freeLancerId });
-        return res.status(201).json({ success: true, bid });
+        return res
+            .status(201)
+            .json({ success: true, message: "Bid created successfully" });
     } catch (error) {
         console.log(error);
         return res
@@ -49,7 +51,7 @@ export const getBidsForGig = async (req, res) => {
             });
         }
 
-        const bids = await Bid.find({ gigId });
+        const bids = await Bid.find({ gigId }).populate("freeLancerId", "name");
         return res.status(200).json({ success: true, bids });
     } catch (error) {
         console.log(error);

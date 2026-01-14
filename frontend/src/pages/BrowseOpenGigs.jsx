@@ -15,7 +15,9 @@ export default function BrowseOpenGigs() {
                         search,
                     },
                 });
-                setGigs(response.data.gigs || []);
+                if (response.data.success) {
+                    setGigs(response.data.gigs);
+                }
             } catch (error) {
                 console.error("Error fetching gigs:", error);
             } finally {
@@ -27,7 +29,7 @@ export default function BrowseOpenGigs() {
     }, [search]);
 
     return (
-        <div className="max-w-2xl mx-auto px-4 py-6">
+        <div className="max-w-2xl mx-auto px-4 py-6 bg-white">
             <h1 className="text-2xl font-semibold mb-6">Available Gigs</h1>
 
             <form
@@ -50,7 +52,7 @@ export default function BrowseOpenGigs() {
                 </button>
             </form>
 
-            <div className="grid gap-4">
+            <div className="grid gap-6">
                 {loading ? (
                     <p>Loading gigs...</p>
                 ) : gigs.length > 0 ? (

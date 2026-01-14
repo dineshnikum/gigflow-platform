@@ -1,6 +1,5 @@
 import { createContext, useEffect } from "react";
 import api from "../api/axios.js";
-import { toast } from "react-toastify";
 import { useContext, useState } from "react";
 
 const AuthContext = createContext();
@@ -13,10 +12,9 @@ const AuthProvider = ({ children }) => {
             const response = await api.post("/api/auth/login", formData);
             if (response.data.success) {
                 setUser(response.data.user);
-                toast.success(response.data.message);
             }
         } catch (error) {
-            toast.error(error?.response?.data?.message || "Login failed");
+            console.log(error?.response?.data?.message || "Login failed");
         }
     };
 
@@ -25,10 +23,9 @@ const AuthProvider = ({ children }) => {
             const response = await api.post("/api/auth/register", formData);
             if (response.data.success) {
                 setUser(response.data.user);
-                toast.success(response.data.message);
             }
         } catch (error) {
-            toast.error(
+            console.log(
                 error?.response?.data?.message || "Registration failed"
             );
         }

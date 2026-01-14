@@ -6,7 +6,6 @@ import CreateGig from "./pages/CreateGig";
 import { ToastContainer } from "react-toastify";
 import NotFound from "./pages/NotFound";
 import Navbar from "./components/Navbar";
-import GigDetails from "./pages/GigDetails";
 import Home from "./pages/Home";
 import { useAuth } from "./context/authContext";
 
@@ -29,7 +28,6 @@ export default function App() {
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/browse-open-gigs" element={<BrowseOpenGigs />} />
-                <Route path="/gig/:gigId" element={<GigDetails />} />
                 <Route
                     path="/create-gig"
                     element={
